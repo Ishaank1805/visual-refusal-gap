@@ -1,0 +1,77 @@
+==========================================
+SLURM_JOB_ID = 2596248
+SLURM_NODELIST = gnode080
+SLURM_JOB_GPUS = 0
+==========================================
+=== PHASE 1: The Safety Switch ===
+[1/4] Preparing data...
+  No GEMINI_API_KEY, using 152 harmful prompts as-is
+  No GEMINI_API_KEY, using 151 benign prompts as-is
+harmful_train: 136
+benign_train:  135
+harmful_val:   16
+benign_val:    16
+Saved: /scratch/ishaan.karan/data/prompts/prompt_data.json
+
+Next: python phase1_02_extract_refusal_vector.py
+[2/4] Extracting refusal direction...
+GPU: NVIDIA GeForce RTX 2080 Ti (11.3 GB)
+harmful_train: 136
+benign_train: 135
+Loading llava-hf/llava-1.5-7b-hf (4-bit=True)...
+VRAM: 4.05 GB
+Layers: 32, Hidden: 4096
+
+Collecting harmful activations...
+
+Collecting benign activations...
+
+Layer  Harmful    Benign     Gap       
+------------------------------------
+  0      0.0000     0.0000     0.0000    
+  4      0.3146     0.2549     0.0597    
+  8      -0.0091    -0.1930    0.1838    
+  12     0.2730     -0.0747    0.3477    
+  16     0.3999     -0.1390    0.5388    
+  20     0.4442     -0.1296    0.5738    
+  24     0.4053     -0.1420    0.5473    
+  28     0.3693     -0.1584    0.5277    
+  32     0.3626     -0.0965    0.4590    
+
+Best: layer 17 (gap=0.5741)
+Saved to /scratch/ishaan.karan/outputs/vectors
+
+Next: python phase1_03_validate_refusal_vector.py --use_4bit
+[3/4] Validating...
+GPU: NVIDIA GeForce RTX 2080 Ti (11.3 GB)
+Steering layer: 17
+Loading llava-hf/llava-1.5-7b-hf (4-bit=True)...
+VRAM: 4.05 GB
+
+============================================================
+GENERATING BASELINE RESPONSES
+============================================================
+
+additive α=0.1
+
+additive α=0.3
+
+additive α=0.5
+
+additive α=1.0
+
+additive α=2.0
+
+Responses saved: /scratch/ishaan.karan/outputs/logs/validation_responses_llava_hf_llava_1.5_7b_hf.json
+
+Skipped judging. Run with --judge_only later:
+  python phase1_03_validate_refusal_vector.py --judge_only
+
+Next: python phase1_04_visualize.py
+[4/4] Plots...
+Generating Phase 1 plots...
+Saved: /scratch/ishaan.karan/outputs/plots/refusal_scores_by_layer_llava_hf_llava_1.5_7b_hf.png
+  Skipping steering plot (no validation results)
+
+All plots: /scratch/ishaan.karan/outputs/plots
+Phase 1 COMPLETE
