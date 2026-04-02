@@ -17,7 +17,7 @@ Usage:
 """
 
 import os
-os.environ.setdefault("HF_HOME", os.environ.get("HF_CACHE", "/scratch/ishaan.karan/hf_cache"))
+os.environ.setdefault("HF_HOME", os.environ.get("HF_CACHE", "hf_cache"))
 
 import gc, json, argparse
 import numpy as np
@@ -111,9 +111,9 @@ def collect_image_acts(model, processor, pairs, target_layer):
 def main():
     ap = argparse.ArgumentParser(description="Extract alignment directions + measure visual gap")
     ap.add_argument("--model_id", default="llava-hf/llava-1.5-7b-hf")
-    ap.add_argument("--direction_file", default="/scratch/ishaan.karan/data/visual_hazards_v2/direction_prompts.json")
-    ap.add_argument("--vector_dir", default="/scratch/ishaan.karan/outputs/vectors")
-    ap.add_argument("--output_dir", default="/scratch/ishaan.karan/outputs/generalization")
+    ap.add_argument("--direction_file", default="data/visual_hazards_v2/direction_prompts.json")
+    ap.add_argument("--vector_dir", default="outputs/vectors")
+    ap.add_argument("--output_dir", default="outputs/generalization")
     ap.add_argument("--use_4bit", action="store_true")
     args = ap.parse_args()
 

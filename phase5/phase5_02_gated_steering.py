@@ -18,7 +18,7 @@ Usage:
 """
 
 import os
-os.environ.setdefault("HF_HOME", os.environ.get("HF_CACHE", "/scratch/ishaan.karan/hf_cache"))
+os.environ.setdefault("HF_HOME", os.environ.get("HF_CACHE", "hf_cache"))
 
 import gc, json, argparse
 import numpy as np
@@ -103,9 +103,9 @@ def extract_clip_features(image_paths, labels, device="cuda", batch_size=16):
 def main():
     ap = argparse.ArgumentParser(description="Gated steering with CLIP classifier")
     ap.add_argument("--model_id", default="llava-hf/llava-1.5-7b-hf")
-    ap.add_argument("--vector_dir", default="/scratch/ishaan.karan/outputs/vectors")
-    ap.add_argument("--hazards_dir", default="/scratch/ishaan.karan/data/visual_hazards_v2")
-    ap.add_argument("--output_dir", default="/scratch/ishaan.karan/outputs/defense")
+    ap.add_argument("--vector_dir", default="outputs/vectors")
+    ap.add_argument("--hazards_dir", default="data/visual_hazards_v2")
+    ap.add_argument("--output_dir", default="outputs/defense")
     ap.add_argument("--use_4bit", action="store_true")
     ap.add_argument("--alpha", type=float, default=0.5)
     ap.add_argument("--image_style", default="clean")

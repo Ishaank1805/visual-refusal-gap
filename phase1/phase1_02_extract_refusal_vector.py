@@ -17,7 +17,7 @@ Usage:
 """
 
 import os
-os.environ.setdefault("HF_HOME", os.environ.get("HF_CACHE", "/scratch/ishaan.karan/hf_cache"))
+os.environ.setdefault("HF_HOME", os.environ.get("HF_CACHE", "hf_cache"))
 
 import gc, json, argparse
 import numpy as np
@@ -96,8 +96,8 @@ def collect_activations(model, tokenizer, prompts, num_layers):
 
 def extract_refusal_direction(
     model_id="llava-hf/llava-1.5-7b-hf",
-    data_dir="/scratch/ishaan.karan/data/prompts",
-    output_dir="/scratch/ishaan.karan/outputs/vectors",
+    data_dir="data/prompts",
+    output_dir="outputs/vectors",
     use_4bit=True,
 ):
     device = get_device()
@@ -196,8 +196,8 @@ def extract_refusal_direction(
 def main():
     ap = argparse.ArgumentParser(description="Extract refusal direction")
     ap.add_argument("--model_id", default="llava-hf/llava-1.5-7b-hf")
-    ap.add_argument("--data_dir", default="/scratch/ishaan.karan/data/prompts")
-    ap.add_argument("--output_dir", default="/scratch/ishaan.karan/outputs/vectors")
+    ap.add_argument("--data_dir", default="data/prompts")
+    ap.add_argument("--output_dir", default="outputs/vectors")
     ap.add_argument("--use_4bit", action="store_true")
     args = ap.parse_args()
     extract_refusal_direction(**vars(args))

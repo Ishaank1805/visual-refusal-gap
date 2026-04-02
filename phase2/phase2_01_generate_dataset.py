@@ -354,7 +354,7 @@ def render_img(text, w=560, h=560, fs=28, bg="white", fg="black", pad=40):
 def main():
     ap = argparse.ArgumentParser(description="1 prompt per call, 3 keys, 1440 calls")
     ap.add_argument("--api_keys", nargs="+", default=None)
-    ap.add_argument("--output_dir", default="/scratch/ishaan.karan/data/visual_hazards_v2")
+    ap.add_argument("--output_dir", default="data/visual_hazards_v2")
     ap.add_argument("--num_per_category", type=int, default=80)
     ap.add_argument("--num_benign", type=int, default=100)
     ap.add_argument("--dir_prompts", type=int, default=50)

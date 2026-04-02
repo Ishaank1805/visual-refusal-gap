@@ -126,9 +126,9 @@ def plot_steering_validation(log_path, plot_dir, model_name):
 def main():
     ap = argparse.ArgumentParser(description="Phase 1 visualization")
     ap.add_argument("--model_id", default="llava-hf/llava-1.5-7b-hf")
-    ap.add_argument("--vector_dir", default="/scratch/ishaan.karan/outputs/vectors")
-    ap.add_argument("--log_dir", default="/scratch/ishaan.karan/outputs/logs")
-    ap.add_argument("--plot_dir", default="/scratch/ishaan.karan/outputs/plots")
+    ap.add_argument("--vector_dir", default="outputs/vectors")
+    ap.add_argument("--log_dir", default="outputs/logs")
+    ap.add_argument("--plot_dir", default="outputs/plots")
     args = ap.parse_args()
 
     plot_dir = Path(args.plot_dir)

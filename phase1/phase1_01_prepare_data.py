@@ -447,7 +447,7 @@ def prepare_data(output_dir: str, seed: int = 42, target_train: int = 400,
 
 def main():
     ap = argparse.ArgumentParser(description="Prepare Phase 1 prompt data")
-    ap.add_argument("--output_dir", default="/scratch/ishaan.karan/data/prompts")
+    ap.add_argument("--output_dir", default="data/prompts")
     ap.add_argument("--seed", type=int, default=42)
     ap.add_argument("--target_train", type=int, default=400)
     ap.add_argument("--target_val", type=int, default=50)

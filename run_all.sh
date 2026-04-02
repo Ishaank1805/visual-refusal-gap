@@ -9,5 +9,8 @@ bash run_phase4.sh
 bash run_phase5.sh
 echo ""
 echo "ALL PHASES COMPLETE"
-echo "  /scratch/ishaan.karan/data/           — prompts + images"
-echo "  /scratch/ishaan.karan/outputs/        — all results + plots"
+ROOT_DIR="${VRG_ROOT:-$(pwd)}"
+DATA_DIR="${VRG_DATA_DIR:-$ROOT_DIR/data}"
+OUTPUT_DIR="${VRG_OUTPUT_DIR:-$ROOT_DIR/outputs}"
+echo "  $DATA_DIR           — prompts + images"
+echo "  $OUTPUT_DIR        — all results + plots"

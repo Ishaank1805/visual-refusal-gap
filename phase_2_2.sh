@@ -15,10 +15,12 @@
 # --- Environment setup ---
 source ~/.bashrc
 conda activate pyg
+ROOT_DIR="${VRG_ROOT:-$(pwd)}"
+OUTPUT_DIR="${VRG_OUTPUT_DIR:-$ROOT_DIR/outputs}"
 
 python -u phase2/phase2_02_measure_visual_gap.py \
     --model_id llava-hf/llava-1.5-7b-hf \
-    --vector_dir /scratch/ishaan.karan/outputs/vectors \
+    --vector_dir "$OUTPUT_DIR/vectors" \
     --hazards_dir ./data/visual_hazards_v2 \
-    --output_dir /scratch/ishaan.karan/outputs/gap_analysis \
+    --output_dir "$OUTPUT_DIR/gap_analysis" \
     --use_4bit

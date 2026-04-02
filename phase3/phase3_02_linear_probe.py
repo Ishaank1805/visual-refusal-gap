@@ -137,10 +137,10 @@ def run_probe(X_train, y_train, X_test, y_test, name=""):
 def main():
     ap = argparse.ArgumentParser(description="Linear Probe: train text → test image")
     ap.add_argument("--model_id", default="llava-hf/llava-1.5-7b-hf")
-    ap.add_argument("--gap_dir", default="/scratch/ishaan.karan/outputs/gap_analysis")
-    ap.add_argument("--vector_dir", default="/scratch/ishaan.karan/outputs/vectors")
-    ap.add_argument("--output_dir", default="/scratch/ishaan.karan/outputs/mechanism")
-    ap.add_argument("--plot_dir", default="/scratch/ishaan.karan/outputs/plots")
+    ap.add_argument("--gap_dir", default="outputs/gap_analysis")
+    ap.add_argument("--vector_dir", default="outputs/vectors")
+    ap.add_argument("--output_dir", default="outputs/mechanism")
+    ap.add_argument("--plot_dir", default="outputs/plots")
     args = ap.parse_args()
 
     out = Path(args.output_dir); out.mkdir(parents=True, exist_ok=True)

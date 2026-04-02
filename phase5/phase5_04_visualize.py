@@ -18,8 +18,8 @@ from pathlib import Path
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--defense_dir", default="/scratch/ishaan.karan/outputs/defense")
-    ap.add_argument("--plot_dir", default="/scratch/ishaan.karan/outputs/plots")
+    ap.add_argument("--defense_dir", default="outputs/defense")
+    ap.add_argument("--plot_dir", default="outputs/plots")
     args = ap.parse_args()
 
     Path(args.plot_dir).mkdir(parents=True, exist_ok=True)

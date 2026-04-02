@@ -17,7 +17,7 @@ Usage:
 """
 
 import os
-os.environ.setdefault("HF_HOME", os.environ.get("HF_CACHE", "/scratch/ishaan.karan/hf_cache"))
+os.environ.setdefault("HF_HOME", os.environ.get("HF_CACHE", "hf_cache"))
 
 import gc, json, argparse
 import torch
@@ -87,8 +87,8 @@ def gen_image_response(model, processor, text, image_path, max_new_tokens=150):
 
 def run_behavioral(
     model_id="llava-hf/llava-1.5-7b-hf",
-    hazards_dir="/scratch/ishaan.karan/data/visual_hazards_v2",
-    output_dir="/scratch/ishaan.karan/outputs/gap_analysis",
+    hazards_dir="data/visual_hazards_v2",
+    output_dir="outputs/gap_analysis",
     use_4bit=True,
     image_style="clean",
     max_new_tokens=150,
@@ -196,8 +196,8 @@ def run_behavioral(
 def main():
     ap = argparse.ArgumentParser(description="Behavioral validation (generate responses)")
     ap.add_argument("--model_id", default="llava-hf/llava-1.5-7b-hf")
-    ap.add_argument("--hazards_dir", default="/scratch/ishaan.karan/data/visual_hazards_v2")
-    ap.add_argument("--output_dir", default="/scratch/ishaan.karan/outputs/gap_analysis")
+    ap.add_argument("--hazards_dir", default="data/visual_hazards_v2")
+    ap.add_argument("--output_dir", default="outputs/gap_analysis")
     ap.add_argument("--use_4bit", action="store_true")
     ap.add_argument("--image_style", default="clean")
     ap.add_argument("--max_new_tokens", type=int, default=150)

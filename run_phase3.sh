@@ -14,10 +14,13 @@
 
 set -e
 export PYTHONUNBUFFERED=1
-export HF_HOME="${HF_CACHE:-/scratch/ishaan.karan/hf_cache}"
+ROOT_DIR="${VRG_ROOT:-$(pwd)}"
+DATA_DIR="${VRG_DATA_DIR:-$ROOT_DIR/data}"
+OUTPUT_DIR="${VRG_OUTPUT_DIR:-$ROOT_DIR/outputs}"
+export HF_HOME="${HF_CACHE:-$ROOT_DIR/hf_cache}"
 export TRANSFORMERS_CACHE="$HF_HOME"
 MODEL_ID="${MODEL_ID:-llava-hf/llava-1.5-7b-hf}"
-HAZARDS="${HAZARDS_DIR:-/scratch/ishaan.karan/data/visual_hazards_v2}"
+HAZARDS="${HAZARDS_DIR:-$DATA_DIR/visual_hazards_v2}"
 
 echo "=============================================="
 echo "  PHASE 3: The Mechanism (8 experiments)"
@@ -26,70 +29,70 @@ echo "=============================================="
 echo "[1/8] Alignment geometry..."
 python -u phase3/phase3_01_alignment_geometry.py \
     --model_id "$MODEL_ID" \
-    --vector_dir /scratch/ishaan.karan/outputs/vectors \
-    --gap_dir /scratch/ishaan.karan/outputs/gap_analysis \
-    --output_dir /scratch/ishaan.karan/outputs/mechanism \
-    --plot_dir /scratch/ishaan.karan/outputs/plots
+    --vector_dir "$OUTPUT_DIR/vectors" \
+    --gap_dir "$OUTPUT_DIR/gap_analysis" \
+    --output_dir "$OUTPUT_DIR/mechanism" \
+    --plot_dir "$OUTPUT_DIR/plots"
 
 echo "[2/8] Linear probe..."
 python -u phase3/phase3_02_linear_probe.py \
     --model_id "$MODEL_ID" \
-    --gap_dir /scratch/ishaan.karan/outputs/gap_analysis \
-    --vector_dir /scratch/ishaan.karan/outputs/vectors \
-    --output_dir /scratch/ishaan.karan/outputs/mechanism \
-    --plot_dir /scratch/ishaan.karan/outputs/plots
+    --gap_dir "$OUTPUT_DIR/gap_analysis" \
+    --vector_dir "$OUTPUT_DIR/vectors" \
+    --output_dir "$OUTPUT_DIR/mechanism" \
+    --plot_dir "$OUTPUT_DIR/plots"
 
 echo "[3/8] Interpolation + boundary..."
 python -u phase3/phase3_03_interpolation.py \
     --model_id "$MODEL_ID" \
-    --vector_dir /scratch/ishaan.karan/outputs/vectors \
+    --vector_dir "$OUTPUT_DIR/vectors" \
     --hazards_dir "$HAZARDS" \
-    --output_dir /scratch/ishaan.karan/outputs/mechanism \
-    --plot_dir /scratch/ishaan.karan/outputs/plots \
+    --output_dir "$OUTPUT_DIR/mechanism" \
+    --plot_dir "$OUTPUT_DIR/plots" \
     --use_4bit --num_pairs 50
 
 echo "[4/8] Projector ablation grid..."
 python -u phase3/phase3_04_projector_ablation.py \
     --model_id "$MODEL_ID" \
-    --vector_dir /scratch/ishaan.karan/outputs/vectors \
+    --vector_dir "$OUTPUT_DIR/vectors" \
     --hazards_dir "$HAZARDS" \
-    --output_dir /scratch/ishaan.karan/outputs/mechanism \
-    --plot_dir /scratch/ishaan.karan/outputs/plots \
+    --output_dir "$OUTPUT_DIR/mechanism" \
+    --plot_dir "$OUTPUT_DIR/plots" \
     --use_4bit --num_pairs 50
 
 echo "[5/8] Projector surgery..."
 python -u phase3/phase3_05_projector_surgery.py \
     --model_id "$MODEL_ID" \
-    --vector_dir /scratch/ishaan.karan/outputs/vectors \
+    --vector_dir "$OUTPUT_DIR/vectors" \
     --hazards_dir "$HAZARDS" \
-    --output_dir /scratch/ishaan.karan/outputs/mechanism \
-    --plot_dir /scratch/ishaan.karan/outputs/plots \
+    --output_dir "$OUTPUT_DIR/mechanism" \
+    --plot_dir "$OUTPUT_DIR/plots" \
     --use_4bit --num_pairs 50 --steps 100
 
 echo "[6/8] Representation swap..."
 python -u phase3/phase3_06_representation_swap.py \
     --model_id "$MODEL_ID" \
-    --vector_dir /scratch/ishaan.karan/outputs/vectors \
+    --vector_dir "$OUTPUT_DIR/vectors" \
     --hazards_dir "$HAZARDS" \
-    --output_dir /scratch/ishaan.karan/outputs/mechanism \
-    --plot_dir /scratch/ishaan.karan/outputs/plots \
+    --output_dir "$OUTPUT_DIR/mechanism" \
+    --plot_dir "$OUTPUT_DIR/plots" \
     --use_4bit --num_pairs 30
 
 echo "[7/8] Layer freezing sweep..."
 python -u phase3/phase3_07_layer_freezing.py \
     --model_id "$MODEL_ID" \
-    --vector_dir /scratch/ishaan.karan/outputs/vectors \
+    --vector_dir "$OUTPUT_DIR/vectors" \
     --hazards_dir "$HAZARDS" \
-    --output_dir /scratch/ishaan.karan/outputs/mechanism \
-    --plot_dir /scratch/ishaan.karan/outputs/plots \
+    --output_dir "$OUTPUT_DIR/mechanism" \
+    --plot_dir "$OUTPUT_DIR/plots" \
     --use_4bit --num_pairs 30
 
 echo "[8/8] Decoding dynamics..."
 python -u phase3/phase3_08_decoding_dynamics.py \
     --model_id "$MODEL_ID" \
     --hazards_dir "$HAZARDS" \
-    --output_dir /scratch/ishaan.karan/outputs/mechanism \
-    --plot_dir /scratch/ishaan.karan/outputs/plots \
+    --output_dir "$OUTPUT_DIR/mechanism" \
+    --plot_dir "$OUTPUT_DIR/plots" \
     --use_4bit --num_pairs 30
 
 echo ""

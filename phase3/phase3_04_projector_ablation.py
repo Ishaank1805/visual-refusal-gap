@@ -14,7 +14,7 @@ Usage:
 """
 
 import os
-os.environ.setdefault("HF_HOME", os.environ.get("HF_CACHE", "/scratch/ishaan.karan/hf_cache"))
+os.environ.setdefault("HF_HOME", os.environ.get("HF_CACHE", "hf_cache"))
 
 import gc, json, argparse, copy
 import numpy as np
@@ -47,10 +47,10 @@ def is_refusal(resp):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--model_id", default="llava-hf/llava-1.5-7b-hf")
-    ap.add_argument("--vector_dir", default="/scratch/ishaan.karan/outputs/vectors")
-    ap.add_argument("--hazards_dir", default="/scratch/ishaan.karan/data/visual_hazards_v2")
-    ap.add_argument("--output_dir", default="/scratch/ishaan.karan/outputs/mechanism")
-    ap.add_argument("--plot_dir", default="/scratch/ishaan.karan/outputs/plots")
+    ap.add_argument("--vector_dir", default="outputs/vectors")
+    ap.add_argument("--hazards_dir", default="data/visual_hazards_v2")
+    ap.add_argument("--output_dir", default="outputs/mechanism")
+    ap.add_argument("--plot_dir", default="outputs/plots")
     ap.add_argument("--use_4bit", action="store_true")
     ap.add_argument("--num_pairs", type=int, default=50)
     ap.add_argument("--ablation_ks", type=int, nargs="+", default=[1, 5, 10, 20, 50, 100, 200])

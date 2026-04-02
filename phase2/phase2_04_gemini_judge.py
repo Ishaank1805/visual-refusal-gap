@@ -135,7 +135,7 @@ def keyword_judge(response):
 
 def judge_responses(
     response_file,
-    output_dir="/scratch/ishaan.karan/outputs/gap_analysis",
+    output_dir="outputs/gap_analysis",
     api_keys=None,
     gemini_model="gemini-3.1-flash-lite-preview",
 ):
@@ -281,7 +281,7 @@ def main():
     ap = argparse.ArgumentParser(description="Gemini 3-way judge for behavioral responses")
     ap.add_argument("--response_file", default=None,
                     help="Path to behavioral_responses_*.json (auto-detected if not set)")
-    ap.add_argument("--output_dir", default="/scratch/ishaan.karan/outputs/gap_analysis")
+    ap.add_argument("--output_dir", default="outputs/gap_analysis")
     ap.add_argument("--api_keys", nargs="+", default=None)
     ap.add_argument("--gemini_model", default="gemini-3.1-flash-lite-preview")
     args = ap.parse_args()

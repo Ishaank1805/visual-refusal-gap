@@ -18,7 +18,7 @@ Usage:
 """
 
 import os
-os.environ.setdefault("HF_HOME", os.environ.get("HF_CACHE", "/scratch/ishaan.karan/hf_cache"))
+os.environ.setdefault("HF_HOME", os.environ.get("HF_CACHE", "hf_cache"))
 
 import sys, gc, json, argparse
 import numpy as np
@@ -98,9 +98,9 @@ def collect_image_activations(model, processor, text, image_path, target_layers)
 
 def measure_visual_gap(
     model_id="llava-hf/llava-1.5-7b-hf",
-    vector_dir="/scratch/ishaan.karan/outputs/vectors",
-    hazards_dir="/scratch/ishaan.karan/data/visual_hazards_v2",
-    output_dir="/scratch/ishaan.karan/outputs/gap_analysis",
+    vector_dir="outputs/vectors",
+    hazards_dir="data/visual_hazards_v2",
+    output_dir="outputs/gap_analysis",
     use_4bit=True,
     image_style="clean",
     max_pairs=0,
@@ -313,9 +313,9 @@ def measure_visual_gap(
 def main():
     ap = argparse.ArgumentParser(description="Measure Visual Refusal Gap")
     ap.add_argument("--model_id", default="llava-hf/llava-1.5-7b-hf")
-    ap.add_argument("--vector_dir", default="/scratch/ishaan.karan/outputs/vectors")
-    ap.add_argument("--hazards_dir", default="/scratch/ishaan.karan/data/visual_hazards_v2")
-    ap.add_argument("--output_dir", default="/scratch/ishaan.karan/outputs/gap_analysis")
+    ap.add_argument("--vector_dir", default="outputs/vectors")
+    ap.add_argument("--hazards_dir", default="data/visual_hazards_v2")
+    ap.add_argument("--output_dir", default="outputs/gap_analysis")
     ap.add_argument("--use_4bit", action="store_true")
     ap.add_argument("--image_style", default="clean")
     ap.add_argument("--max_pairs", type=int, default=0, help="0=all")

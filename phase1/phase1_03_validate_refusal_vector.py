@@ -26,7 +26,7 @@ Usage:
 """
 
 import os
-os.environ.setdefault("HF_HOME", os.environ.get("HF_CACHE", "/scratch/ishaan.karan/hf_cache"))
+os.environ.setdefault("HF_HOME", os.environ.get("HF_CACHE", "hf_cache"))
 
 import gc, json, argparse, time, warnings
 import numpy as np
@@ -474,9 +474,9 @@ def judge_all_responses(response_file, output_dir, api_keys, gemini_model):
 def main():
     ap = argparse.ArgumentParser(description="Validate refusal direction with Gemini judge")
     ap.add_argument("--model_id", default="llava-hf/llava-1.5-7b-hf")
-    ap.add_argument("--data_dir", default="/scratch/ishaan.karan/data/prompts")
-    ap.add_argument("--vector_dir", default="/scratch/ishaan.karan/outputs/vectors")
-    ap.add_argument("--output_dir", default="/scratch/ishaan.karan/outputs/logs")
+    ap.add_argument("--data_dir", default="data/prompts")
+    ap.add_argument("--vector_dir", default="outputs/vectors")
+    ap.add_argument("--output_dir", default="outputs/logs")
     ap.add_argument("--use_4bit", action="store_true")
     ap.add_argument("--steering_layer", type=int, default=None)
     ap.add_argument("--alpha_values", type=float, nargs="+", default=[0.1, 0.3, 0.5, 1.0, 2.0])

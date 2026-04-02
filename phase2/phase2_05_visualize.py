@@ -180,8 +180,8 @@ def plot_behavioral(output_dir, plot_dir, model_name):
 def main():
     ap = argparse.ArgumentParser(description="Phase 2 visualization")
     ap.add_argument("--model_id", default="llava-hf/llava-1.5-7b-hf")
-    ap.add_argument("--output_dir", default="/scratch/ishaan.karan/outputs/gap_analysis")
-    ap.add_argument("--plot_dir", default="/scratch/ishaan.karan/outputs/plots")
+    ap.add_argument("--output_dir", default="outputs/gap_analysis")
+    ap.add_argument("--plot_dir", default="outputs/plots")
     args = ap.parse_args()
 
     Path(args.plot_dir).mkdir(parents=True, exist_ok=True)

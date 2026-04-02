@@ -384,10 +384,10 @@ pipeline/
 
 ## Data Layout
 
-All outputs go to `/scratch/ishaan.karan/`:
+All outputs go to your configured workspace root (default: repository root):
 
 ```
-/scratch/ishaan.karan/
+<repo-root>/
 ├── hf_cache/                            ← HuggingFace model weights
 ├── data/
 │   ├── prompts/prompt_data.json         ← 400 train + 50 val per class

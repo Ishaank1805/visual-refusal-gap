@@ -24,7 +24,7 @@ Usage:
 """
 
 import os
-os.environ.setdefault("HF_HOME", os.environ.get("HF_CACHE", "/scratch/ishaan.karan/hf_cache"))
+os.environ.setdefault("HF_HOME", os.environ.get("HF_CACHE", "hf_cache"))
 
 import gc, json, argparse
 import numpy as np
@@ -54,9 +54,9 @@ class SafetyAdapter(nn.Module):
 
 
 def train_adapter(
-    vector_dir="/scratch/ishaan.karan/outputs/vectors",
-    gap_dir="/scratch/ishaan.karan/outputs/gap_analysis",
-    output_dir="/scratch/ishaan.karan/outputs/defense",
+    vector_dir="outputs/vectors",
+    gap_dir="outputs/gap_analysis",
+    output_dir="outputs/defense",
     model_name="llava_hf_llava_1.5_7b_hf",
     epochs=200,
     lr=1e-3,
@@ -223,9 +223,9 @@ def train_adapter(
 def main():
     ap = argparse.ArgumentParser(description="Safety adapter")
     ap.add_argument("--model_id", default="llava-hf/llava-1.5-7b-hf")
-    ap.add_argument("--vector_dir", default="/scratch/ishaan.karan/outputs/vectors")
-    ap.add_argument("--gap_dir", default="/scratch/ishaan.karan/outputs/gap_analysis")
-    ap.add_argument("--output_dir", default="/scratch/ishaan.karan/outputs/defense")
+    ap.add_argument("--vector_dir", default="outputs/vectors")
+    ap.add_argument("--gap_dir", default="outputs/gap_analysis")
+    ap.add_argument("--output_dir", default="outputs/defense")
     ap.add_argument("--epochs", type=int, default=200)
     ap.add_argument("--lr", type=float, default=1e-3)
     args = ap.parse_args()

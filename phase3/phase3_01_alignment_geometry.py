@@ -15,7 +15,7 @@ Usage:
 """
 
 import os
-os.environ.setdefault("HF_HOME", os.environ.get("HF_CACHE", "/scratch/ishaan.karan/hf_cache"))
+os.environ.setdefault("HF_HOME", os.environ.get("HF_CACHE", "hf_cache"))
 
 import json, argparse
 import numpy as np
@@ -433,10 +433,10 @@ def plot_all(results, plot_dir, model_name):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--model_id", default="llava-hf/llava-1.5-7b-hf")
-    ap.add_argument("--vector_dir", default="/scratch/ishaan.karan/outputs/vectors")
-    ap.add_argument("--gap_dir", default="/scratch/ishaan.karan/outputs/gap_analysis")
-    ap.add_argument("--output_dir", default="/scratch/ishaan.karan/outputs/mechanism")
-    ap.add_argument("--plot_dir", default="/scratch/ishaan.karan/outputs/plots")
+    ap.add_argument("--vector_dir", default="outputs/vectors")
+    ap.add_argument("--gap_dir", default="outputs/gap_analysis")
+    ap.add_argument("--output_dir", default="outputs/mechanism")
+    ap.add_argument("--plot_dir", default="outputs/plots")
     ap.add_argument("--skip_projector", action="store_true")
     args = ap.parse_args()
 

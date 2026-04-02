@@ -13,7 +13,7 @@ Usage:
 """
 
 import os
-os.environ.setdefault("HF_HOME", os.environ.get("HF_CACHE", "/scratch/ishaan.karan/hf_cache"))
+os.environ.setdefault("HF_HOME", os.environ.get("HF_CACHE", "hf_cache"))
 
 import gc, json, argparse
 import numpy as np
@@ -112,9 +112,9 @@ def collect_text_acts_qwen(model, processor, prompts, num_layers):
 def main():
     ap = argparse.ArgumentParser(description="Cross-architecture validation")
     ap.add_argument("--model_id", default="Qwen/Qwen2-VL-2B-Instruct")
-    ap.add_argument("--data_dir", default="/scratch/ishaan.karan/data/prompts")
-    ap.add_argument("--hazards_dir", default="/scratch/ishaan.karan/data/visual_hazards_v2")
-    ap.add_argument("--output_dir", default="/scratch/ishaan.karan/outputs/generalization")
+    ap.add_argument("--data_dir", default="data/prompts")
+    ap.add_argument("--hazards_dir", default="data/visual_hazards_v2")
+    ap.add_argument("--output_dir", default="outputs/generalization")
     ap.add_argument("--use_4bit", action="store_true")
     ap.add_argument("--max_prompts", type=int, default=100,
                     help="Max prompts per class for extraction (save time)")

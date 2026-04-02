@@ -121,9 +121,9 @@ def plot_cross_architecture(gen_dir, vector_dir, plot_dir):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--gen_dir", default="/scratch/ishaan.karan/outputs/generalization")
-    ap.add_argument("--vector_dir", default="/scratch/ishaan.karan/outputs/vectors")
-    ap.add_argument("--plot_dir", default="/scratch/ishaan.karan/outputs/plots")
+    ap.add_argument("--gen_dir", default="outputs/generalization")
+    ap.add_argument("--vector_dir", default="outputs/vectors")
+    ap.add_argument("--plot_dir", default="outputs/plots")
     args = ap.parse_args()
 
     Path(args.plot_dir).mkdir(parents=True, exist_ok=True)
